@@ -28,7 +28,15 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+server.on('listening', onListening);
+var socketIO = require('socket.io');
+var io = socketIO.listen(server);
 
+io.on('connection', function(socket) {
+  socket.on('request', function() {
+    socket.broadcast.emit('response');
+  });
+});
 /**
  * Normalize a port into a number, string, or false.
  */
