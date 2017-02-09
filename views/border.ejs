@@ -25,7 +25,17 @@
         </div>
     <% } %>
    <form action="/border/<%= border.border_id %>" method="post">
-       <input type="text" name="message" class="input" required>
+       <select name="status_id">
+         <option value="0">自炊</option>
+         <option value="1">カップラーメン</option>
+         <option value="2">外食</option>
+       </select>
+       <select name="three_meal">
+         <option value="0">朝食</option>
+         <option value="1">昼食</option>
+         <option value="2">夜食</option>
+       </select>
+       <input type="number" name="message" class="input" required>
        <button type="submit" class="submit">投稿</button>
    </form>
    <a href="/" class="btn">トップへもどる</a>

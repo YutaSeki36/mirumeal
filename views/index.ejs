@@ -14,15 +14,16 @@
         <%= title %>
     </p>
 
+    <form action="/" method="post" class="board-form">
+        新規食事ログ<input type="date" name="log_date" value= 1>
+        <button type="submit" class="submit">作成</button>
+    </form>
     <ul class="main-list">
         <% borderList.forEach(function(borderItem) { %>
           <li class="main-list__item">
               <a href="/border/<%= borderItem.border_id %>" class="board">
                   <p class="board__title">
                       <%= borderItem.title %>
-                  </p>
-                  <p class="board__date">
-                      <%= borderItem.created_at %>
                   </p>
               </a>
           </li>

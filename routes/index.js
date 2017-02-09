@@ -9,7 +9,6 @@ router.get('/', function(request, response, next) {
     pg.connect(con, function(err, client) {
       var query = 'SELECT * FROM border';
       client.query(query, function(err, query0) {
-        console.log(query0.rows);
         response.render('index', {
           title: 'Express',
           borderList: query0.rows
@@ -28,14 +27,14 @@ router.get('/add', function(request, response, next) {
 });
 
 router.post('/', function(request, response, next) {
-    var title = request.body["title"];
-    var c_a=request.body["c_a"]
-    var createdAt = moment().format('YYYY-MM-DD HH:mm:ss'); // 追加
-
+    var c_a=request.body["c_a"];
+    var log_eat=request.body["log_date"];
+    var title=log_eat+'の食事データ';
+    console.log(title);
     var con = "tcp://sekiyuuta:root@localhost:5432/postgres";
     pg.connect(con, function(err, client) {
         var qstr = "insert into border (title, created_at) VALUES($1, $2);";
-        var query = client.query(qstr,[title,c_a]);
+        var query = client.query(qstr,[title,log_eat]);
         query.on('end', function(row,err) {
             response.redirect("/");
         });
