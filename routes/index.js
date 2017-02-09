@@ -7,25 +7,14 @@ var pg = require('pg');
 router.get('/', function(request, response, next) {
     var con = "tcp://sekiyuuta:root@localhost:5432/postgres"; //
     pg.connect(con, function(err, client) {
-        var query = client.query('select * from border;');
-        var rows = [];
-        query.on('row', function(row) {
-            rows.push(row);
-        });
-        query.on('end', function(row,err) {
-            response.render('index', {
-                title: 'Express',
-                data:rows
-            });
-        });
-        query.on('error', function(error) {
-            console.log("ERROR!!" + error);
-            response.render('index', {
-                title: title,
-                data: null,
-                message: "ERROR is occured!"
-            });
-        });
+      var query = 'SELECT * FROM border';
+      client.query(query, function(err, query0) {
+        console.log(query0.rows);
+        response.render('index', {
+          title: 'Express',
+          borderList: query0.rows
+         });
+      });
     });
 });
 

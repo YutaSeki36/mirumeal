@@ -7,20 +7,20 @@ var pg = require('pg');
 router.get('/:border_id', function(req, res, next) {
   var borderId = req.params.border_id;
   var qstr = 'SELECT * FROM border WHERE border_id = ' + borderId;
+  var getMessagesQuery = 'SELECT * FROM message WHERE border_id = ' + borderId;
   var con = "tcp://sekiyuuta:root@localhost:5432/postgres"; //
   pg.connect(con, function(err, client) {
-      var query = client.query(qstr);
-      var rows = [];
-      query.on('row', function(row) {
-          rows.push(row);
+    client.query(qstr, function(err, query1){
+      client.query(getMessagesQuery, function(err, query2) {
+        console.log(query2.rows);
+        // ②（①の処理がいつ終わるかわかんないけど、次の処理はこれ）
+        res.render('border', { // ③（②の処理がいつ終わるかわかんないけど、次の処理はこれ）
+          title: query1.rows[0].title,
+          border: query1.rows[0], // ①の処理は終わっているのでboard[0]は存在する
+          messageList: query2.rows // ②の処理は終わっているのでmessagesは存在する
+        });
       });
-      query.on('end', function(row,err) {
-        console.log(rows);
-          res.render('border', {
-              title: rows[0].title,
-              border:rows[0]
-          });
-      });
+    });
   });
 });
 

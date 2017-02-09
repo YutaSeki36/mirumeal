@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+</head>
+
+<body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <% if (data != null) { %>
-        <table border="1">
-        <% for(var i=0; i < data.length; i++){ %>
-            <tr>
-            <td width="200px"><%= data[i].border_id %></td>
-            <td width="200px"><%= data[i].title %></td>
-            <td width="300px"><%= data[i].created_at %></td>
-            </tr>
-        <% } %>
-        </table>
-    <% } %>
-  </body>
+    <p>Welcome to
+        <%= title %>
+    </p>
+
+    <ul class="main-list">
+        <% borderList.forEach(function(borderItem) { %>
+          <li class="main-list__item">
+              <a href="/border/<%= borderItem.border_id %>" class="board">
+                  <p class="board__title">
+                      <%= borderItem.title %>
+                  </p>
+                  <p class="board__date">
+                      <%= borderItem.created_at %>
+                  </p>
+              </a>
+          </li>
+          <% }); %>
+    </ul>
+    </div>
+
+</body>
+
 </html>
