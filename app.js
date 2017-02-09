@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var border = require('./routes/border'); // ←追加
+var check = require('./routes/check');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.disable('etag');
 app.use('/', index);
 app.use('/users', users);
 app.use('/border', border);
+app.use('/check', check);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

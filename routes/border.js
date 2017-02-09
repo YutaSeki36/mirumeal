@@ -18,11 +18,12 @@ router.get('/:border_id', function(req, res, next) {
           res.render('border', {
             title: query1.rows[0].title,
             border: query0.rows[0],
-            messageList: query2.rows 
+            messageList: query2.rows
           });
         });
       });
     });
+    pg.end();
   });
 });
 
@@ -41,6 +42,7 @@ router.post('/:border_id', function(req, res, next) {
           res.redirect('/border/' + borderId);
       });
     });
+    pg.end();
   });
 });
 

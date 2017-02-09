@@ -13,11 +13,22 @@ router.get('/', function(request, response, next) {
           title: 'Express',
           borderList: query0.rows
          });
+         client.end();//end();で終わらせないと無限にセッションを作られる
       });
+      pg.end();
     });
 });
 
 router.get('/add', function(request, response, next) {
+    response.render('add',
+        {
+            title: 'Add Page',
+            msg: 'please type data:'
+        }
+    );
+});
+
+router.get('/check', function(request, response, next) {
     response.render('add',
         {
             title: 'Add Page',
@@ -38,6 +49,7 @@ router.post('/', function(request, response, next) {
         query.on('end', function(row,err) {
             response.redirect("/");
         });
+        query.end();
         query.on('error', function(error) {
             console.log("ERROR!");
             response.render('index', {
@@ -45,7 +57,9 @@ router.post('/', function(request, response, next) {
                 data: null,
                 message: "ERROR is occured!"
             });
+            query.end();
         });
+        pg.end();
     });
 });
 
