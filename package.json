@@ -13,11 +13,13 @@
     "express": "~4.14.1",
     "moment": "^2.17.1",
     "morgan": "~1.7.0",
+    "pg": "^6.1.2",
     "pg-promise": "^5.5.6",
     "serve-favicon": "~2.3.2",
     "socket.io": "^1.7.2"
   },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "pg": "^6.1.2"
   }
 }

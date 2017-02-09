@@ -14,12 +14,11 @@ router.get('/:border_id', function(req, res, next) {
     client.query(qstr,function(err,query0){
       client.query(createdAt, function(err, query1){
         client.query(getEatLogQuery+"'"+query1.rows[0].created_at+"'", function(err, query2) {
-        // ②（①の処理がいつ終わるかわかんないけど、次の処理はこれ）
-          console.log(query1.rows[0])
-          res.render('border', { // ③（②の処理がいつ終わるかわかんないけど、次の処理はこれ）
+          console.log(query2.rows)
+          res.render('border', {
             title: query1.rows[0].title,
-            border: query0.rows[0], // ①の処理は終わっているのでboard[0]は存在する
-            messageList: query2 // ②の処理は終わっているのでmessagesは存在する
+            border: query0.rows[0],
+            messageList: query2.rows 
           });
         });
       });
