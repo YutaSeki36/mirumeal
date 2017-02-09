@@ -40,12 +40,13 @@ router.get('/add', function(request, response, next) {
 
 router.post('/', function(request, response, next) {
     var title = request.body["title"];
+    var c_a=request.body["c_a"]
     var createdAt = moment().format('YYYY-MM-DD HH:mm:ss'); // 追加
 
     var con = "tcp://sekiyuuta:root@localhost:5432/postgres";
     pg.connect(con, function(err, client) {
         var qstr = "insert into border (title, created_at) VALUES($1, $2);";
-        var query = client.query(qstr,[title,createdAt]);
+        var query = client.query(qstr,[title,c_a]);
         query.on('end', function(row,err) {
             response.redirect("/");
         });
