@@ -17,7 +17,7 @@ router.get('/:border_id', function(req, res, next) {
   var qstr = 'SELECT * FROM border WHERE border_id = ' + borderId;
   var createdAt = "SELECT to_char(created_at, 'yyyy-mm-dd') as created_at FROM border WHERE border_id = "+borderId;
   var getEatLogQuery = "SELECT id,status_id ,img_id,to_char(logdate, 'yyyy-mm-dd') as logdate,three_meal FROM logeat WHERE logdate = " ;
-  var con = "tcp://sekiyuuta:root@localhost:5432/postgres"; //
+  var con = "tcp://gyqxwlnruqdage:50b52d08b756769692b56e29f39dcfe0056c8d73814d92f359e96976833e9da4@ec2-184-72-246-219.compute-1.amazonaws.com:5432/df502fvkn3s7gn"; //
   pg.connect(con, function(err, client) {
     client.query(qstr,function(err,query0){
       client.query(createdAt, function(err, query1){
@@ -45,7 +45,7 @@ router.post('/:border_id', upload.single('image_file'),  function(req, res, next
   var mealType = req.body.three_meal;
   var borderId = req.params.border_id;
   var createdAt = "SELECT to_char(created_at, 'yyyy-mm-dd') as created_at FROM border WHERE border_id = "+borderId;
-  var con = "tcp://sekiyuuta:root@localhost:5432/postgres";
+  var con = "tcp://gyqxwlnruqdage:50b52d08b756769692b56e29f39dcfe0056c8d73814d92f359e96976833e9da4@ec2-184-72-246-219.compute-1.amazonaws.com:5432/df502fvkn3s7gn";
   var qstr = 'INSERT INTO logeat (status_id, logdate, three_meal, img_id) VALUES($1, $2, $3, $4);';
   cloudinary.uploader.upload(path, function(result) {
     var imagePath = result.url;
