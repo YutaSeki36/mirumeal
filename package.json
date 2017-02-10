@@ -5,6 +5,10 @@
   "scripts": {
     "start": "node ./bin/www"
   },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "pg": "^6.1.2"
+  },
   "dependencies": {
     "body-parser": "~1.16.0",
     "chart.js": "^2.4.0",
@@ -21,14 +25,8 @@
     "gulp": "^3.9.1",
     "pg-promise": "^5.5.6",
     "serve-favicon": "~2.3.2",
-    "socket.io": "^1.7.2"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "pg": "^6.1.2"
-  },
-  "dependencies": {
-  "jade": "*"
+    "socket.io": "^1.7.2",
+    "jade": "*"
   },
   "engines": {
   "node": "v7.4.0",
