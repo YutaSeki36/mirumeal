@@ -1,44 +1,63 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<title><%= title %></title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="format-detection" content="telephone=no">
-<link rel='stylesheet' href='/stylesheets/style.css'>
+    <title>
+        <%= title %>
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel='stylesheet' href='/stylesheets/style.css'>
 </head>
+
 <body>
-<div class="wrapper">
-  <p class="main-title"><%= title %></p>
-    <% if (messageList.length) { %>
-        <div class="white-bg">
-            <ul class="main-list">
-                <% messageList.forEach(function(messageItem) { %>
-                    <li class="main-list__item">
-                        <div class="message">
-                            <p class="message__title"><%= messageItem.message %></p>
-                            <p class="message__date"><%= messageItem.created_at %></p>
-                        </div>
-                    </li>
-                <% }); %>
-            </ul>
-        </div>
-    <% } %>
-   <form action="/border/<%= border.border_id %>" method="post">
-       <select name="status_id">
+    <div class="wrapper">
+        <p class="main-title">
+            <%= title %>
+        </p>
+        <% if (messageList.length) { %>
+          <% console.log(messageList); %>
+            <div class="white-bg">
+                <ul class="main-list">
+                    <% messageList.forEach(function(messageItem) { %>
+                        <li class="main-list__item">
+                            <div class="message">
+                                <% if (messageItem.img_id) { %>
+                                    <a href="<%= messageItem.img_id %>" class="message__image" style="background-image: url(<%= messageItem.img_id %>);"></a>
+                                    <% } %>
+                                        <p class="message__title">
+                                            <%= messageItem.created_at %>
+                                        </p>
+                                        <p class="message__date">
+                                            <%= messageItem.created_at %>
+                                        </p>
+                            </div>
+                        </li>
+                        <% }); %>
+                </ul>
+            </div>
+            <% } %>
+                <form action="/border/<%= border.border_id %>" method="post" enctype="multipart/form-data">
+                    <select name="status_id">
          <option value="0">自炊</option>
          <option value="1">カップラーメン</option>
          <option value="2">外食</option>
        </select>
-       <select name="three_meal">
+                    <select name="three_meal">
          <option value="0">朝食</option>
          <option value="1">昼食</option>
          <option value="2">夜食</option>
        </select>
-       <input type="number" name="message" class="input" required>
-       <button type="submit" class="submit">投稿</button>
-   </form>
-   <a href="/" class="btn">トップへもどる</a>
-</div>
+                    <input type="number" name="message" class="input" required>
+                    <button type="submit" class="submit">投稿</button>
+                    <div class="file-wrap">
+                        画像を追加
+                        <input type="file" name="image_file" class="file">
+                    </div>
+                </form>
+                <a href="/" class="btn">トップへもどる</a>
+    </div>
 </body>
+
 </html>

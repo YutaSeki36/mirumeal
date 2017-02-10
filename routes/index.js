@@ -7,15 +7,15 @@ var pg = require('pg');
 router.get('/', function(request, response, next) {
     var con = "tcp://sekiyuuta:root@localhost:5432/postgres"; //
     pg.connect(con, function(err, client) {
-      var query = 'SELECT * FROM border';
-      client.query(query, function(err, query0) {
-        response.render('index', {
-          title: 'Express',
-          borderList: query0.rows
-         });
-         client.end();//end();で終わらせないと無限にセッションを作られる
-      });
-      pg.end();
+       var query = 'SELECT * FROM border';
+          client.query(query, function(err, query0) {
+             response.render('index', {
+               title: 'Express',
+               borderList: query0.rows
+             });
+            client.end();//end();で終わらせないと無限にセッションを作られる
+          });
+       pg.end();
     });
 });
 
@@ -49,7 +49,6 @@ router.post('/', function(request, response, next) {
         query.on('end', function(row,err) {
             response.redirect("/");
         });
-        query.end();
         query.on('error', function(error) {
             console.log("ERROR!");
             response.render('index', {
@@ -57,7 +56,6 @@ router.post('/', function(request, response, next) {
                 data: null,
                 message: "ERROR is occured!"
             });
-            query.end();
         });
         pg.end();
     });

@@ -1,8 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var moment = require('moment');
+var multer = require('multer');
+var upload = multer({ dest: './public/images/uploads/' });
 var pg = require('pg');
+var cloudinary = require('cloudinary');
 
+cloudinary.config({
+  cloud_name: 'dmaxejjlk',
+  api_key: '635981366553447',
+  api_secret: 'j543FRo4j5dChkSY98ync9jouQU'
+});
 
 router.get('/:border_id', function(req, res, next) {
   var borderId = req.params.border_id;
@@ -22,27 +30,31 @@ router.get('/:border_id', function(req, res, next) {
           });
         });
       });
+      pg.end();
     });
-    pg.end();
   });
 });
 
-router.post('/:border_id', function(req, res, next) {
+router.post('/:border_id', upload.single('image_file'),  function(req, res, next) {
+  var path = req.file.path;
   var message = req.body.status_id;
   var mealType = req.body.three_meal;
   var borderId = req.params.border_id;
   var createdAt = "SELECT to_char(created_at, 'yyyy-mm-dd') as created_at FROM border WHERE border_id = "+borderId;
   var con = "tcp://sekiyuuta:root@localhost:5432/postgres";
-  var qstr = 'INSERT INTO logeat (status_id, logdate, three_meal) VALUES($1, $2, $3);';
-  pg.connect(con, function(err, client) {
-    client.query(createdAt,function(err,createTime){
-      console.log(createTime.rows[0].created_at);
-      var query=client.query(qstr,[message,createTime.rows[0].created_at,mealType]);
-      query.on('end', function(row,err) {
-          res.redirect('/border/' + borderId);
+  var qstr = 'INSERT INTO logeat (status_id, logdate, three_meal, img_id) VALUES($1, $2, $3, $4);';
+  cloudinary.uploader.upload(path, function(result) {
+    var imagePath = result.url;
+    pg.connect(con, function(err, client) {
+      client.query(createdAt,function(err,createTime){
+    //    console.log(createTime.rows[0].created_at);
+        var query=client.query(qstr,[message, createTime.rows[0].created_at, mealType, imagePath]);
+        query.on('end', function(row,err) {
+            res.redirect('/border/' + borderId);
+        });
       });
+      pg.end();
     });
-    pg.end();
   });
 });
 
