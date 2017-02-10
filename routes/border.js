@@ -16,15 +16,15 @@ router.get('/:border_id', function(req, res, next) {
   var borderId = req.params.border_id;
   var qstr = 'SELECT * FROM border WHERE border_id = ' + borderId;
   var createdAt = "SELECT to_char(created_at, 'yyyy-mm-dd') as created_at FROM border WHERE border_id = "+borderId;
-  var getEatLogQuery = 'SELECT * FROM logeat WHERE logdate = ' ;
+  var getEatLogQuery = "SELECT id,status_id ,img_id,to_char(logdate, 'yyyy-mm-dd') as logdate,three_meal FROM logeat WHERE logdate = " ;
   var con = "tcp://sekiyuuta:root@localhost:5432/postgres"; //
   pg.connect(con, function(err, client) {
     client.query(qstr,function(err,query0){
       client.query(createdAt, function(err, query1){
         client.query(getEatLogQuery+"'"+query1.rows[0].created_at+"'", function(err, query2) {
-          console.log(query2.rows)
+          console.log(query1.rows)
           res.render('border', {
-            title: query1.rows[0].title,
+            title: query1.rows[0].created_at,
             border: query0.rows[0],
             messageList: query2.rows
           });
@@ -36,7 +36,11 @@ router.get('/:border_id', function(req, res, next) {
 });
 
 router.post('/:border_id', upload.single('image_file'),  function(req, res, next) {
-  var path = req.file.path;
+  if (req.file) {
+    var path = req.file.path;
+  }else{
+    var path = null;
+  }
   var message = req.body.status_id;
   var mealType = req.body.three_meal;
   var borderId = req.params.border_id;

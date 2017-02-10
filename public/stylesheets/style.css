@@ -130,8 +130,8 @@ input:-webkit-autofill, textarea:-webkit-autofill {
 .message__image {
     display: block;
     margin-bottom: 10px;
-    width: 500px;
-    height: 500px;
+    width: 200px;
+    height: 200px;
     background-size: cover;
     background-position: center;
 }
@@ -142,6 +142,21 @@ input:-webkit-autofill, textarea:-webkit-autofill {
     color: #ccc;
     text-align: right;
 }
+#breakfast{
+  display: block;
+  width: 100%;
+  height:auto;
+}
+
+#breakfast img{
+  display: block;
+  margin-bottom: 10px;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
 .board-form {
     margin: 20px 0;
     text-align: center;

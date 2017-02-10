@@ -3,34 +3,26 @@
 
 <head>
     <title>
-        <%= title %>
+        MiruMeal
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css'>
 </head>
 
 <body>
-    <h1><%= title %></h1>
-    <p>Welcome to
-        <%= title %>
-    </p>
-
     <form action="/" method="post" class="board-form">
-        新規食事ログ<input type="date" name="log_date" value= 1>
-        <button type="submit" class="submit">作成</button>
+      新規食事ログ<input type="date" name="log_date" value= 1>
+      <button type="submit" class="submit">作成</button>
     </form>
     <ul class="main-list">
-        <% borderList.forEach(function(borderItem) { %>
-          <li class="main-list__item">
-              <a href="/border/<%= borderItem.border_id %>" class="board">
-                  <p class="board__title">
-                      <%= borderItem.title %>
-                  </p>
-              </a>
-          </li>
-          <% }); %>
+      <% borderList.forEach(function(borderItem) { %>
+        <li class="main-list__item">
+          <a href="/border/<%= borderItem.border_id %>" class="board">
+            <p class="board__title">
+              <%= borderItem.title %>
+            </p>
+          </a>
+        </li>
+      <% }); %>
     </ul>
-    </div>
-
 </body>
-
 </html>
