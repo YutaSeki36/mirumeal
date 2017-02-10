@@ -9,6 +9,36 @@
 </head>
 
 <body>
+
+  <canvas id="pieArea" height="150" width="150"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+   <script>
+   <!-- 円グラフ用データ -->
+   var pieData = [
+       {
+           value: <%= chart1 %>,
+           color:"#CCCCCC"
+       },
+       {
+           value : <%= chart2 %>,
+           color : "#FF3366"
+       },
+       {
+           value : <%= chart3 %>,
+           color : "#339999"
+       }
+   ];
+   <!-- オプション項目セット -->
+   var pieOption =
+       {
+           segmentStrokeColor : "#666",// 区切り線の色
+           segmentStrokeWidth : 0,     // 区切り線の太さ
+           animation : true       // アニメーション有無
+       };
+   <!-- 円グラフ描画 -->
+   var myPie = new Chart(document.getElementById("pieArea").getContext("2d")).Pie(pieData,pieOption);
+   </script>
+
     <form action="/" method="post" class="board-form">
       新規食事ログ<input type="date" name="log_date" value= 1>
       <button type="submit" class="submit">作成</button>
