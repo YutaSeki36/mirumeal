@@ -5,7 +5,7 @@ var pg = require('pg');
 
 /* GET home page. */
 router.get('/', function(request, response, next) {
-    var con = "tcp://sekiyuuta:root@localhost:5432/postgres"; //
+    var con = "tcp://postgres:root@localhost:5432/postgres"; //
     pg.connect(con, function(err, client) {
        var query = 'SELECT * FROM border';
        var chart1 = 'select count(*) from logeat where status_id= ' + "'"+'自炊'+"'";
@@ -54,7 +54,7 @@ router.post('/', function(request, response, next) {
     var log_eat=request.body["log_date"];
     var title=log_eat+'の食事データ';
     console.log(title);
-    var con = "tcp://sekiyuuta:root@localhost:5432/postgres";
+    var con = "tcp://postgres:root@localhost:5432/postgres";
     pg.connect(con, function(err, client) {
         var qstr = "insert into border (title, created_at) VALUES($1, $2);";
         var query = client.query(qstr,[title,log_eat]);
