@@ -6,41 +6,57 @@
         MiruMeal
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel='stylesheet' href='/stylesheets/chart.css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 
 <body>
-
-  <canvas id="pieArea" height="150" width="150"></canvas>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-   <script>
+  <header>
+    <div class="app__title">
+      <p>MiruMeal</p>
+    </div>
+  </header>
+  <div class="chart">
+    <canvas id="pieArea" height="250" width="250"></canvas>
+    <div class="chart__attribute">
+      <ul class="float">
+        <li class="chart__attribute_list1">自炊</li>
+        <li class="chart__attribute_list2">カップラーメン</li>
+        <li class="chart__attribute_list3">外食</li>
+      </ul>
+    </div>
+  </div>
+  <script>
    <!-- 円グラフ用データ -->
    var pieData = [
        {
            value: <%= chart1 %>,
-           color:"#CCCCCC"
+           color:"#9acce3",
+           label:'自炊'
        },
        {
            value : <%= chart2 %>,
-           color : "#FF3366"
+           color : "#FF3366",
+           label:'カップラーメン'
        },
        {
            value : <%= chart3 %>,
-           color : "#339999"
+           color : "#339999",
+           label:'外食'
        }
    ];
    <!-- オプション項目セット -->
    var pieOption =
        {
-           segmentStrokeColor : "#666",// 区切り線の色
-           segmentStrokeWidth : 0,     // 区切り線の太さ
            animation : true       // アニメーション有無
        };
    <!-- 円グラフ描画 -->
    var myPie = new Chart(document.getElementById("pieArea").getContext("2d")).Pie(pieData,pieOption);
    </script>
-
     <form action="/" method="post" class="board-form">
-      新規食事ログ<input type="date" name="log_date" value= 1>
+      新規食事ログ<input type="date" name="log_date" value= "2017-01-01">
       <button type="submit" class="submit">作成</button>
     </form>
     <ul class="main-list">
