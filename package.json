@@ -7,11 +7,13 @@
   },
   "dependencies": {
     "body-parser": "^1.16.0",
+    "canvas": "^1.6.2",
     "chart.js": "^2.5.0",
     "chartjs-node": "^1.4.0",
     "cloudinary": "^1.7.0",
     "express": "3.1.0",
     "jade": "*",
+    "node-gyp": "^3.5.0",
     "serve-favicon": "^2.3.2"
   },
   "devDependencies": {
