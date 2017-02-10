@@ -21,15 +21,13 @@
     "gulp": "^3.9.1",
     "pg-promise": "^5.5.6",
     "serve-favicon": "~2.3.2",
-    "socket.io": "^1.7.2"
+    "socket.io": "^1.7.2",
+    "express": "3.1.0",
+    "jade": "*"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
     "pg": "^6.1.2"
-  },
-  "dependencies": {
-  "express": "3.1.0",
-  "jade": "*"
   },
   "engines": {
   "node": "v7.4.0",
