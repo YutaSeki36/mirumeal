@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var moment = require('moment');
 var pg = require('pg');
-var ChartjsNode = require('chartjs-node');
 
 /* GET home page. */
 router.get('/', function(request, response, next) {
