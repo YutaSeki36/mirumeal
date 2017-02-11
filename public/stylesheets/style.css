@@ -157,6 +157,7 @@ input:-webkit-autofill, textarea:-webkit-autofill {
 .board-form {
     margin: 20px 0;
     text-align: center;
+    color: #ffffff;
 }
 .login-user {
     position: fixed;

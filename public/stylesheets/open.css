@@ -33,3 +33,29 @@ label:hover {
   height: auto;
   padding: 15px;
 }
+
+@media screen and (max-width: 480px){
+  label {
+    cursor: pointer;
+    display: block;
+    width: 30%;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background: #0bd;
+    color: #FFF;
+    margin: 15px auto;
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
+  }
+  .panel {
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+    width: 330px;
+    height: 0;
+    overflow: hidden;
+    background: #FFFFFF;
+    margin: 0 auto;
+    padding: 0;
+    border-radius: 5px;
+  }
+}

@@ -21,6 +21,7 @@
   </header>
   <div class="main_content">
   <div class="status__area">
+    <p class="status__area__title">食事ステータス</p>
     <div class="chart">
       <canvas id="pieArea" height="250" width="250">
       </canvas>
@@ -74,7 +75,7 @@
       <input id="check" class="none_d" type="checkbox">
       <div class="panel">
         <form action="/?_method=PUT" method="post" id="mother_comment" class="m_form">
-          変更テキスト:
+          入力フォーム:
           <input type="text" name="text" value="母からのコメント" class="input_text">
           <button type="submit" value="put" class="submit _submit">コメント</button>
         </form>
@@ -83,10 +84,13 @@
    <script>
    document.getElementById('_mcomment_title').textContent="<%= m_comment.text %>";
    </script>
+   <div class="eat__record">
+     <p class="eat__record_title">食事ログ</p>
     <form action="/" method="post" class="board-form">
-      新規食事ログ<input type="date" name="log_date" value= "2017-01-01">
-      <button type="submit" class="submit">作成</button>
+      新規食事ログ<input class="eat__record_input" type="date" name="log_date" value= "2017-01-01">
+      <button type="submit" class="_submit">作成</button>
     </form>
+    <div class="eat__record_list">
     <ul class="main-list">
       <% borderList.forEach(function(borderItem) { %>
         <li class="main-list__item">
@@ -96,11 +100,13 @@
             </p>
           </a>
           <form action="/<%= borderItem.border_id %>/?_method=DELETE" method="post" enctype="multipart/form-data">
-          <button type="submit" value="delete">削除</button>
+          <button type="submit" value="delete" class="_delete">削除</button>
         </form>
         </li>
       <% }); %>
     </ul>
     </div>
+    </div>
+  </div>
 </body>
 </html>
