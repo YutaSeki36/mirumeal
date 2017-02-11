@@ -21,10 +21,10 @@
           <div id="breakfast">
             <p class="breakfast__title">朝食</p>
           </div>
-          <div class="lunch">
+          <div id="lunch">
             <p class="breakfast__title">昼食</p>
           </div>
-          <div class="dinner">
+          <div id="dinner">
             <p class="breakfast__title">夜食</p>
           </div>
             <% messageList.forEach(function(messageItem) { %>
@@ -44,6 +44,15 @@
                       aTag.appendChild(el_i);
                       document.getElementById('breakfast').appendChild(aTag);
                     <% } %>
+                    var form_id = document.createElement("form");
+                    var buttons = document.createElement("button");
+                    var b_text = document.createTextNode("ボタン");
+                    form_id.setAttribute("action","/border/<%= border.border_id %>/<%= messageItem.id %>?_method=DELETE");
+                    form_id.setAttribute("method","post");
+                    buttons.setAttribute("type","submit");
+                    buttons.setAttribute("value","delete");
+                    document.getElementById('breakfast').appendChild(form_id).appendChild(buttons).appendChild(b_text
+                    );
                   </script>
                   <% break;
                 case 1:%>
@@ -61,6 +70,15 @@
                       aTag.appendChild(el_i);
                       document.getElementById('lunch').appendChild(aTag);
                     <% } %>
+                    var form_id = document.createElement("form");
+                    var buttons = document.createElement("button");
+                    var b_text = document.createTextNode("ボタン");
+                    form_id.setAttribute("action","/border/<%= border.border_id %>/<%= messageItem.id %>?_method=DELETE");
+                    form_id.setAttribute("method","post");
+                    buttons.setAttribute("type","submit");
+                    buttons.setAttribute("value","delete");
+                    document.getElementById('lunch').appendChild(form_id).appendChild(buttons).appendChild(b_text
+                    );
                   </script>
                   <% break;
                 case 2:%>
@@ -78,6 +96,15 @@
                       aTag.appendChild(el_i);
                       document.getElementById('dinner').appendChild(aTag);
                     <% } %>
+                    var form_id = document.createElement("form");
+                    var buttons = document.createElement("button");
+                    var b_text = document.createTextNode("ボタン");
+                    form_id.setAttribute("action","/border/<%= border.border_id %>/<%= messageItem.id %>?_method=DELETE");
+                    form_id.setAttribute("method","post");
+                    buttons.setAttribute("type","submit");
+                    buttons.setAttribute("value","delete");
+                    document.getElementById('dinner').appendChild(form_id).appendChild(buttons).appendChild(b_text
+                    );
                   </script>
                   <% break;
                 }

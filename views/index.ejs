@@ -67,6 +67,9 @@
               <%= borderItem.title %>
             </p>
           </a>
+          <form action="/<%= borderItem.border_id %>/?_method=DELETE" method="post" enctype="multipart/form-data">
+          <button type="submit" value="delete">削除</button>
+        </form>
         </li>
       <% }); %>
     </ul>

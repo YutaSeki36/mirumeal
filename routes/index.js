@@ -5,7 +5,7 @@ var pg = require('pg');
 
 /* GET home page. */
 router.get('/', function(request, response, next) {
-    var con = "tcp://gyqxwlnruqdage:50b52d08b756769692b56e29f39dcfe0056c8d73814d92f359e96976833e9da4@ec2-184-72-246-219.compute-1.amazonaws.com:5432/df502fvkn3s7gn"; //
+    var con = "tcp://sekiyuuta:root@localhost:5432/postgres"; //
     pg.connect(con, function(err, client) {
        var query = 'SELECT * FROM border';
        var chart1 = 'select count(*) from logeat where status_id= ' + "'"+'自炊'+"'";
@@ -53,8 +53,8 @@ router.post('/', function(request, response, next) {
     var c_a=request.body["c_a"];
     var log_eat=request.body["log_date"];
     var title=log_eat+'の食事データ';
-    console.log(title);
-    var con = "tcp://gyqxwlnruqdage:50b52d08b756769692b56e29f39dcfe0056c8d73814d92f359e96976833e9da4@ec2-184-72-246-219.compute-1.amazonaws.com:5432/df502fvkn3s7gn";
+    console.log(request.body["log_date"]);
+    var con = "tcp://sekiyuuta:root@localhost:5432/postgres";
     pg.connect(con, function(err, client) {
         var qstr = "insert into border (title, created_at) VALUES($1, $2);";
         var query = client.query(qstr,[title,log_eat]);
@@ -71,6 +71,18 @@ router.post('/', function(request, response, next) {
         });
         pg.end();
     });
+});
+
+router.delete('/:border_id', function(request,response,next){
+  var rm_id =request.params.border_id;
+  var qstr = " delete from border where border_id="+rm_id+";";
+  var con = "tcp://sekiyuuta:root@localhost:5432/postgres";
+  pg.connect(con, function(err, client) {
+    client.query(qstr,function(err,query){
+      response.redirect('/');
+    });
+    pg.end();
+  });
 });
 
 module.exports = router;
