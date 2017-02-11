@@ -6,26 +6,31 @@
         MiruMeal
     </title>
     <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel='stylesheet' href='/stylesheets/index.css'>
     <link rel='stylesheet' href='/stylesheets/chart.css'>
+    <link rel='stylesheet' href='/stylesheets/open.css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
-
 <body>
   <header>
     <div class="app__title">
       <p>MiruMeal</p>
     </div>
   </header>
-  <div class="chart">
-    <canvas id="pieArea" height="250" width="250"></canvas>
-    <div class="chart__attribute">
-      <ul class="float">
-        <li class="chart__attribute_list1">自炊</li>
-        <li class="chart__attribute_list2">カップラーメン</li>
-        <li class="chart__attribute_list3">外食</li>
-      </ul>
+  <div class="main_content">
+  <div class="status__area">
+    <div class="chart">
+      <canvas id="pieArea" height="250" width="250">
+      </canvas>
+      <div class="chart__attribute">
+        <ul class="float">
+          <li class="chart__attribute_list1">自炊</li>
+          <li class="chart__attribute_list2">カップラーメン</li>
+          <li class="chart__attribute_list3">外食</li>
+        </ul>
+      </div>
     </div>
   </div>
   <script>
@@ -55,6 +60,29 @@
    <!-- 円グラフ描画 -->
    var myPie = new Chart(document.getElementById("pieArea").getContext("2d")).Pie(pieData,pieOption);
    </script>
+   <div class="comment">
+     <div class="float_l">
+     <div class="mother_img spNone">
+       <img src="/images/user.png" width="100" height="100" alt="">
+     </div>
+      <div id="_mcomment" class="hukidasi">
+        <h2 class="m_title">母からのメッセージ</h2>
+        <p id="_mcomment_title">母からのコメント</p>
+      </div>
+    </div>
+      <label for="check">メッセージを変更</label>
+      <input id="check" class="none_d" type="checkbox">
+      <div class="panel">
+        <form action="/?_method=PUT" method="post" id="mother_comment" class="m_form">
+          変更テキスト:
+          <input type="text" name="text" value="母からのコメント" class="input_text">
+          <button type="submit" value="put" class="submit _submit">コメント</button>
+        </form>
+      </div>
+   </div>
+   <script>
+   document.getElementById('_mcomment_title').textContent="<%= m_comment.text %>";
+   </script>
     <form action="/" method="post" class="board-form">
       新規食事ログ<input type="date" name="log_date" value= "2017-01-01">
       <button type="submit" class="submit">作成</button>
@@ -73,5 +101,6 @@
         </li>
       <% }); %>
     </ul>
+    </div>
 </body>
 </html>

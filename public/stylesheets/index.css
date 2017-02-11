@@ -1,0 +1,96 @@
+header{
+  position: fixed;            /* ヘッダーの固定 */
+   top: 0px;                   /* 位置(上0px) */
+   left: 0px;
+   width: 100%;
+   background-color: #FFFFFF;
+   color: #FF8C00;
+}
+
+.app__title{
+  font-size: 30px;
+  text-align: center;
+  font-family: 'Comic Sans MS';
+}
+
+.main_content{
+  width: 100%;
+  height: 100%;
+  padding-top:60px;
+  background-color: #FF8C00;
+}
+.comment{
+  margin-top: 30px;
+}
+.float_l{
+  overflow: hidden;
+}
+.mother_img{
+  display: block;
+  width:150px;
+  margin-left:50px;
+  float: left;
+}
+
+.mother_img img{
+  margin-left: 24px;
+}
+
+#_mcomment{
+  position: relative;
+  background-color: #FFFFFF;
+  width: 70%;
+  height: 100px;
+  border: 2px solid #FFFFFF;
+  border-radius: 10px;
+  float: left;
+}
+#_mcomment_title{
+  width:90%;
+  margin: auto;
+  font-size: 20px;
+}
+.m_title{
+  font-size: 25px;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  border-bottom: 1px solid;
+}
+.hukidasi{
+
+}
+.hukidasi::before{
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top:20px;
+  left: -24px;
+  border-top: 15px solid #FFFFFF;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  transform: rotate(90deg);
+}
+
+.m_form{
+}
+.input_text{
+  margin:0 10px 0 10px;
+  border-bottom: 1px solid;
+}
+
+@media screen and (max-width: 480px){
+  .spNone {
+    margin: 50px 0 0 0;
+  }
+}
+
+.status__area{
+  display: block;
+  width: 90%;
+  margin: auto;
+  padding: 20px 0 20px 0;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
