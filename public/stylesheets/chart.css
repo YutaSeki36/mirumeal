@@ -37,11 +37,26 @@
 }
 
 .chart__attribute_list1::before{
-  background: #9acce3;
+  background: #e74c3c;
 }
 .chart__attribute_list2::before{
-  background: #FF3366;
+  background: #3498db;
 }
 .chart__attribute_list3::before{
-  background: #339999;
+  background: #2ecc71;
+}
+@media screen and (max-width: 330px){
+  .float li{
+    font-size: 15px;
+    margin: 0 2px 0 10px;
+  }
+  .chart__attribute li::before{
+      content: "";
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+      margin-right: 5px;
+      border-radius: 3px;
+      vertical-align:middle
+  }
 }

@@ -6,130 +6,154 @@
         <%= title %>の食事データ
     </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">   
     <meta name="format-detection" content="telephone=no">
     <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel='stylesheet' href='/stylesheets/index.css'>
+    <link rel='stylesheet' href='/stylesheets/border.css'>
 </head>
 <body>
-  <div class="wrapper">
-    <p class="main-title">
-      <%= title %>の食事データ
-    </p>
-    <% if (messageList.length) { %>
-      <% console.log(messageList); %>
-        <div class="white-bg">
-          <div id="breakfast">
-            <p class="breakfast__title">朝食</p>
+  <header>
+    <div class="app__title">
+      <p>MiruMeal</p>
+    </div>
+  </header>
+  <div class="main_content">
+    <div class="wrap">
+      <p class="main__title">
+        <%= title %>の食事データ
+      </p>
+      <% if (messageList.length) { %>
+        <% console.log(messageList); %>
+          <div class="white-bg">
+            <ul>
+              <li>
+                <div id="breakfast">
+                  <p class="breakfast__title">朝食</p>
+                </div>
+              </li>
+              <li>
+                <div id="lunch">
+                  <p class="lunch__title">昼食</p>
+                </div>
+              <li>
+                <div id="dinner">
+                  <p class="dinner__title">夜食</p>
+                </div>
+              </li>
+            </ul>
+              <% messageList.forEach(function(messageItem) { %>
+                <% switch(messageItem.three_meal){
+                  case 0:%>
+                    <script>
+                      var p = document.createElement("p");
+                      p.setAttribute("class","break_p");
+                      var text = document.createTextNode("<%=messageItem.status_id%>");
+                      document.getElementById('breakfast').appendChild(p).appendChild(text);
+                      <% if (messageItem.img_id) { %>
+                        var linkURL = "<%= messageItem.img_id %>";
+                        var el_i = document.createElement("img");
+                        el_i.setAttribute("src", "<%= messageItem.img_id %>");
+                        var aTag = document.createElement("a");
+                        aTag.href = linkURL;
+                        aTag.setAttribute("target", "_blank");
+                        aTag.appendChild(el_i);
+                        document.getElementById('breakfast').appendChild(aTag);
+                      <% } %>
+                      var form_id = document.createElement("form");
+                      var buttons = document.createElement("button");
+                      var b_text = document.createTextNode("削除");
+                      form_id.setAttribute("action","/border/<%= border.border_id %>/<%= messageItem.id %>?_method=DELETE");
+                      form_id.setAttribute("method","post");
+                      buttons.setAttribute("type","submit");
+                      buttons.setAttribute("value","delete");
+                      document.getElementById('breakfast').appendChild(form_id).appendChild(buttons).appendChild(b_text
+                      );
+                    </script>
+                    <% break;
+                  case 1:%>
+                    <script>
+                      var p = document.createElement("p");
+                      p.setAttribute("class","break_p");
+                      var text = document.createTextNode("<%=messageItem.status_id%>");
+                      document.getElementById('lunch').appendChild(p).appendChild(text);
+                      <% if (messageItem.img_id) { %>
+                        var linkURL = "<%= messageItem.img_id %>";
+                        var el_i = document.createElement("img");
+                        el_i.setAttribute("src", "<%= messageItem.img_id %>");
+                        var aTag = document.createElement("a");
+                        aTag.href = linkURL;
+                        aTag.setAttribute("target", "_blank");
+                        aTag.appendChild(el_i);
+                        document.getElementById('lunch').appendChild(aTag);
+                      <% } %>
+                      var form_id = document.createElement("form");
+                      var buttons = document.createElement("button");
+                      var b_text = document.createTextNode("削除");
+                      form_id.setAttribute("action","/border/<%= border.border_id %>/<%= messageItem.id %>?_method=DELETE");
+                      form_id.setAttribute("method","post");
+                      buttons.setAttribute("type","submit");
+                      buttons.setAttribute("value","delete");
+                      document.getElementById('lunch').appendChild(form_id).appendChild(buttons).appendChild(b_text
+                      );
+                    </script>
+                    <% break;
+                  case 2:%>
+                    <script>
+                      var p = document.createElement("p");
+                      p.setAttribute("class","break_p");
+                      var text = document.createTextNode("<%=messageItem.status_id%>");
+                      document.getElementById('dinner').appendChild(p).appendChild(text);
+                      <% if (messageItem.img_id) { %>
+                        var linkURL = "<%= messageItem.img_id %>";
+                        var el_i = document.createElement("img");
+                        el_i.setAttribute("src", "<%= messageItem.img_id %>");
+                        var aTag = document.createElement("a");
+                        aTag.href = linkURL;
+                        aTag.setAttribute("target", "_blank");
+                        aTag.appendChild(el_i);
+                        document.getElementById('dinner').appendChild(aTag);
+                      <% } %>
+                      var form_id = document.createElement("form");
+                      var buttons = document.createElement("button");
+                      var b_text = document.createTextNode("削除");
+                      form_id.setAttribute("action","/border/<%= border.border_id %>/<%= messageItem.id %>?_method=DELETE");
+                      form_id.setAttribute("method","post");
+                      buttons.setAttribute("type","submit");
+                      buttons.setAttribute("value","delete");
+                      document.getElementById('dinner').appendChild(form_id).appendChild(buttons).appendChild(b_text
+                      );
+                    </script>
+                    <% break;
+                  }
+                  %>
+              <% }); %>
           </div>
-          <div id="lunch">
-            <p class="breakfast__title">昼食</p>
-          </div>
-          <div id="dinner">
-            <p class="breakfast__title">夜食</p>
-          </div>
-            <% messageList.forEach(function(messageItem) { %>
-              <% switch(messageItem.three_meal){
-                case 0:%>
-                  <script>
-                    var p = document.createElement("p");
-                    var text = document.createTextNode("<%=messageItem.status_id%>");
-                    document.getElementById('breakfast').appendChild(p).appendChild(text);
-                    <% if (messageItem.img_id) { %>
-                      var linkURL = "<%= messageItem.img_id %>";
-                      var el_i = document.createElement("img");
-                      el_i.setAttribute("src", "<%= messageItem.img_id %>");
-                      var aTag = document.createElement("a");
-                      aTag.href = linkURL;
-                      aTag.setAttribute("target", "_blank");
-                      aTag.appendChild(el_i);
-                      document.getElementById('breakfast').appendChild(aTag);
-                    <% } %>
-                    var form_id = document.createElement("form");
-                    var buttons = document.createElement("button");
-                    var b_text = document.createTextNode("ボタン");
-                    form_id.setAttribute("action","/border/<%= border.border_id %>/<%= messageItem.id %>?_method=DELETE");
-                    form_id.setAttribute("method","post");
-                    buttons.setAttribute("type","submit");
-                    buttons.setAttribute("value","delete");
-                    document.getElementById('breakfast').appendChild(form_id).appendChild(buttons).appendChild(b_text
-                    );
-                  </script>
-                  <% break;
-                case 1:%>
-                  <script>
-                    var p = document.createElement("p");
-                    var text = document.createTextNode("<%=messageItem.status_id%>");
-                    document.getElementById('lunch').appendChild(p).appendChild(text);
-                    <% if (messageItem.img_id) { %>
-                      var linkURL = "<%= messageItem.img_id %>";
-                      var el_i = document.createElement("img");
-                      el_i.setAttribute("src", "<%= messageItem.img_id %>");
-                      var aTag = document.createElement("a");
-                      aTag.href = linkURL;
-                      aTag.setAttribute("target", "_blank");
-                      aTag.appendChild(el_i);
-                      document.getElementById('lunch').appendChild(aTag);
-                    <% } %>
-                    var form_id = document.createElement("form");
-                    var buttons = document.createElement("button");
-                    var b_text = document.createTextNode("ボタン");
-                    form_id.setAttribute("action","/border/<%= border.border_id %>/<%= messageItem.id %>?_method=DELETE");
-                    form_id.setAttribute("method","post");
-                    buttons.setAttribute("type","submit");
-                    buttons.setAttribute("value","delete");
-                    document.getElementById('lunch').appendChild(form_id).appendChild(buttons).appendChild(b_text
-                    );
-                  </script>
-                  <% break;
-                case 2:%>
-                  <script>
-                    var p = document.createElement("p");
-                    var text = document.createTextNode("<%=messageItem.status_id%>");
-                    document.getElementById('dinner').appendChild(p).appendChild(text);
-                    <% if (messageItem.img_id) { %>
-                      var linkURL = "<%= messageItem.img_id %>";
-                      var el_i = document.createElement("img");
-                      el_i.setAttribute("src", "<%= messageItem.img_id %>");
-                      var aTag = document.createElement("a");
-                      aTag.href = linkURL;
-                      aTag.setAttribute("target", "_blank");
-                      aTag.appendChild(el_i);
-                      document.getElementById('dinner').appendChild(aTag);
-                    <% } %>
-                    var form_id = document.createElement("form");
-                    var buttons = document.createElement("button");
-                    var b_text = document.createTextNode("ボタン");
-                    form_id.setAttribute("action","/border/<%= border.border_id %>/<%= messageItem.id %>?_method=DELETE");
-                    form_id.setAttribute("method","post");
-                    buttons.setAttribute("type","submit");
-                    buttons.setAttribute("value","delete");
-                    document.getElementById('dinner').appendChild(form_id).appendChild(buttons).appendChild(b_text
-                    );
-                  </script>
-                  <% break;
-                }
-                %>
-            <% }); %>
+      <% } %>
+      <div class="add__date">
+        <p class="add_date__title">新規食事データ</p>
+        <div class="add__date__border">
+          <form action="/border/<%= border.border_id %>" method="post" enctype="multipart/form-data">
+            <select name="three_meal">
+              <option value="0">朝食</option>
+              <option value="1">昼食</option>
+              <option value="2">夜食</option>
+            </select>
+            <select name="status_id">
+              <option value="自炊">自炊</option>
+              <option value="カップラーメン">カップラーメン</option>
+              <option value="外食">外食</option>
+            </select>
+            <div class="add__date__image">
+                画像を追加
+                <input type="file" name="image_file" class="file">
+            </div>
+            <button type="submit" class="add__date__submit">投稿</button>
+          </form>
         </div>
-    <% } %>
-    <form action="/border/<%= border.border_id %>" method="post" enctype="multipart/form-data">
-      <select name="three_meal">
-        <option value="0">朝食</option>
-        <option value="1">昼食</option>
-        <option value="2">夜食</option>
-      </select>
-      <select name="status_id">
-        <option value="自炊">自炊</option>
-        <option value="カップラーメン">カップラーメン</option>
-        <option value="外食">外食</option>
-      </select>
-      <div class="file-wrap">
-          画像を追加
-          <input type="file" name="image_file" class="file">
+        <a href="/" class="btn">トップへもどる</a>
       </div>
-      <button type="submit" class="submit">投稿</button>
-    </form>
-    <a href="/" class="btn">トップへもどる</a>
+    </div>
   </div>
 </body>
 </html>

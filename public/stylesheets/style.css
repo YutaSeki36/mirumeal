@@ -89,9 +89,6 @@ input:-webkit-autofill, textarea:-webkit-autofill {
    Main
 */
 
-.wrapper {
-    padding: 10px 10px 37px;
-}
 .main-title {
     margin-bottom: 20px;
     font-size: 18px;
@@ -138,20 +135,6 @@ input:-webkit-autofill, textarea:-webkit-autofill {
     font-size: 10px;
     color: #ccc;
     text-align: right;
-}
-#breakfast{
-  display: block;
-  width: 100%;
-  height:auto;
-}
-
-#breakfast img{
-  display: block;
-  margin-bottom: 10px;
-  width: 200px;
-  height: 200px;
-  background-size: cover;
-  background-position: center;
 }
 
 .board-form {

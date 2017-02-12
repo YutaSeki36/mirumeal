@@ -1,61 +1,92 @@
 input {
-  margin-left:50px;
-}
-.none_d{
-  display: none;
-}
-label {
-  cursor: pointer;
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 4px;
-  background: #0bd;
-  color: #FFF;
-  margin:10px 0 0 50px;
-  -webkit-transition: 0.1s;
-  transition: 0.1s;
-}
-label:hover {
-  background: #0090aa;
-}
-.panel {
-  -webkit-transition: .3s ease;
-  transition: .3s ease;
-  width: 330px;
-  height: 0;
-  overflow: hidden;
-  background: #FFFFFF;
-  margin: 10px 175px 0 50px;
-  padding: 0;
-  border-radius: 5px;
-}
-.none_d:checked + .panel {
-  height: auto;
-  padding: 15px;
+    margin-left: 50px;
 }
 
-@media screen and (max-width: 480px){
-  label {
+.none_d {
+    display: none;
+}
+
+label {
     cursor: pointer;
-    display: block;
-    width: 30%;
+    display: inline-block;
     padding: 10px 20px;
     border-radius: 4px;
     background: #0bd;
     color: #FFF;
-    margin: 15px auto;
+    margin: 10px 0 0 50px;
     -webkit-transition: 0.1s;
     transition: 0.1s;
-  }
-  .panel {
+}
+
+label:hover {
+    background: #0090aa;
+}
+
+.panel {
     -webkit-transition: .3s ease;
     transition: .3s ease;
     width: 330px;
     height: 0;
     overflow: hidden;
     background: #FFFFFF;
-    margin: 0 auto;
+    margin: 10px 175px 0 50px;
     padding: 0;
     border-radius: 5px;
-  }
+}
+
+.none_d:checked+.panel {
+    height: auto;
+    padding: 15px;
+}
+
+@media screen and (max-width: 480px) {
+    label {
+        cursor: pointer;
+        display: block;
+        width: 30%;
+        padding: 10px 20px;
+        border-radius: 4px;
+        background: #0bd;
+        color: #FFF;
+        margin: 15px auto;
+        -webkit-transition: 0.1s;
+        transition: 0.1s;
+    }
+    .panel {
+        -webkit-transition: .3s ease;
+        transition: .3s ease;
+        width: 330px;
+        height: 0;
+        overflow: hidden;
+        background: #FFFFFF;
+        margin: 0 auto;
+        padding: 0;
+        border-radius: 5px;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    label {
+        cursor: pointer;
+        display: block;
+        width: 30%;
+        padding: 10px 20px;
+        border-radius: 4px;
+        background: #0bd;
+        color: #FFF;
+        margin: 15px auto;
+        -webkit-transition: 0.1s;
+        transition: 0.1s;
+    }
+    .panel {
+        -webkit-transition: .3s ease;
+        transition: .3s ease;
+        width: 220px;
+        height: 0;
+        overflow: hidden;
+        background: #FFFFFF;
+        margin: 0 auto;
+        padding: 0;
+        border-radius: 5px;
+    }
 }
